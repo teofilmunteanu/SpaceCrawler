@@ -1,2 +1,2 @@
 # SpaceCrawler
-test test ezPAste fericit
+test test ezPaste fericit
