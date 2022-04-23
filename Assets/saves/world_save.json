@@ -1,0 +1,20 @@
+{
+    "TESTING": 111,
+    "planetMaps": [
+        {
+            "id": 0,
+            "mapTest1": 123,
+            "mapTest2": 124
+        },
+        {
+            "id": 1,
+            "mapTest1": 334,
+            "mapTest2": 335
+        },
+        {
+            "id": 2,
+            "mapTest1": 574,
+            "mapTest2": 575
+        }
+    ]
+}
