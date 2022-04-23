@@ -52,8 +52,7 @@ public class PlanetMapsData
 
 public class WorldMap : MonoBehaviour
 {
-    //singleton
-    /******************************************/
+    /******************singleton***************/
     public static WorldMap WorldInstance { get; private set; }
 
     public const int totalNrOfPlanets = 3;
