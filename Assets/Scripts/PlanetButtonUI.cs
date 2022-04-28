@@ -17,8 +17,4 @@ public class PlanetButtonUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         img.rectTransform.localScale = new Vector3(1, 1, 1);
     }
-    public void Planet0Clicked()
-    {
-        Debug.Log("Planet0 Clicked");
-    }
 }
