@@ -50,10 +50,10 @@ public class PlanetMapsData
     public PlanetMap[] planetMaps;
 }
 
-public class WorldMap : MonoBehaviour
+public class WorldDataManager : MonoBehaviour
 {
     /******************singleton***************/
-    public static WorldMap WorldInstance { get; private set; }
+    public static WorldDataManager WorldInstance { get; private set; }
 
     public const int totalNrOfPlanets = 3;
     public const int totalNrOfSystems = 2;
