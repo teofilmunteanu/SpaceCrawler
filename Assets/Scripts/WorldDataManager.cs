@@ -55,8 +55,8 @@ public class WorldDataManager : MonoBehaviour
     /******************singleton***************/
     public static WorldDataManager WorldInstance { get; private set; }
 
-    public const int totalNrOfPlanets = 3;
-    public const int totalNrOfSystems = 2;
+    public const int totalNrOfPlanets = 4;
+    public const int totalNrOfSystems = 3;
 
     public PlanetMapsData mapsData = new PlanetMapsData();
     public SolarSystem[] solarSystems = new SolarSystem[totalNrOfSystems];
@@ -83,6 +83,7 @@ public class WorldDataManager : MonoBehaviour
             new PlanetMap(id++, 123),
             new PlanetMap(id++, 334),
             new PlanetMap(id++, 574),
+            new PlanetMap(id++, 786),
         };
         mapsData.TESTING = 111;
 
@@ -97,6 +98,7 @@ public class WorldDataManager : MonoBehaviour
         //solar systems
         solarSystems[0] = new SolarSystem(0, new Planet[] { planets[0] }); ;
         solarSystems[1] = new SolarSystem(2, new Planet[] { planets[1], planets[2] });
+        solarSystems[2] = new SolarSystem(2, new Planet[] { planets[3] });
     }
 
     void Start()
