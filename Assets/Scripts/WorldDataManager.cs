@@ -63,13 +63,14 @@ public class WorldDataManager : MonoBehaviour
     public static WorldDataManager WorldInstance { get; private set; }
     private void Awake()
     {
-        if (WorldInstance != null && WorldInstance != this)
+        if (WorldInstance != null)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         else
         {
             WorldInstance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
     /******************************************/

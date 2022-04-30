@@ -15,9 +15,9 @@ public class SceneChangeManager : MonoBehaviour
             SceneManager.LoadScene("Planet0");
         else
         {
+            //takes the planet index from the scene name
             int selectedPlanetIndex = System.Int32.Parse(Regex.Match(planetButton.name, @"\d+").Value);
             int selectedPlanetSystemIndex = WorldDataManager.planets[selectedPlanetIndex].SolarSystemIndex;
-            Debug.Log("was called");
 
             //If one of the selected planet's previous solar system's planets is complete = If the selected planet's previous system is complete
             if(PlayerDataManager.CompletedSystems[selectedPlanetSystemIndex-1])
@@ -25,17 +25,13 @@ public class SceneChangeManager : MonoBehaviour
                 SceneManager.LoadScene(planetButton.name);
                 
                 PlayerDataManager.CurrentSolarSystemIndex = selectedPlanetSystemIndex;
-                // if(PlayerDataManager.CurrentSolarSystemIndex != selectedPlanetSystemIndex)
-                // {
-                    
-                // }
             } 
             else
             {
                 Debug.Log("Planet inaccessible, complete one of the neighbouring planets.");
             }
-        }  
 
-        Debug.Log("Current solar system: " + PlayerDataManager.CurrentSolarSystemIndex);  
+            Debug.Log("Current solar system: " + PlayerDataManager.CurrentSolarSystemIndex);  
+        }   
     }
 }
