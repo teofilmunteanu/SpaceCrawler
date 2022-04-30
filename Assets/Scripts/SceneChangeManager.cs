@@ -17,24 +17,25 @@ public class SceneChangeManager : MonoBehaviour
         {
             int selectedPlanetIndex = System.Int32.Parse(Regex.Match(planetButton.name, @"\d+").Value);
             int selectedPlanetSystemIndex = WorldDataManager.planets[selectedPlanetIndex].SolarSystemIndex;
+            Debug.Log("was called");
 
             //If one of the selected planet's previous solar system's planets is complete = If the selected planet's previous system is complete
             if(PlayerDataManager.CompletedSystems[selectedPlanetSystemIndex-1])
             {
                 SceneManager.LoadScene(planetButton.name);
+                
+                PlayerDataManager.CurrentSolarSystemIndex = selectedPlanetSystemIndex;
+                // if(PlayerDataManager.CurrentSolarSystemIndex != selectedPlanetSystemIndex)
+                // {
+                    
+                // }
             } 
             else
             {
                 Debug.Log("Planet inaccessible, complete one of the neighbouring planets.");
             }
-        }    
-    }
+        }  
 
-     void Start()
-    {
-        //when planet is completed 
-        //PlayerDataManager pd = new PlayerDataManager();
-        // PlayerDataManager.CompletedPlanets["Planet0"] = true;
-        PlayerDataManager.CompletedSystems[0] = true;
+        Debug.Log("Current solar system: " + PlayerDataManager.CurrentSolarSystemIndex);  
     }
 }

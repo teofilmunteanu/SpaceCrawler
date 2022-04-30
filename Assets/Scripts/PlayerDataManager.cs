@@ -16,7 +16,9 @@ public class PlayerDataManager : MonoBehaviour
         {
             PlayerInstance = this;
         }
+        
     }
+    
     /******************************************/
 
     // static Dictionary<string, bool> completedPlanets = new Dictionary<string, bool>();
@@ -30,4 +32,14 @@ public class PlayerDataManager : MonoBehaviour
     public static int CurrentPlanetIndex { get => currentPlanetIndex; set => currentPlanetIndex = value; }
     public static bool[] CompletedSystems { get => completedSystems; set => completedSystems = value; }
     //public static bool[] CompletedPlanets { get => completedPlanets; set => completedPlanets = value; }
+
+    void OnTriggerEnter (Collider col)
+    {
+        if(col.gameObject.name == "Coordinate")
+        {
+            completedSystems[currentSystemIndex] = true;
+            Debug.Log("Completed system"+currentSystemIndex);
+            //other things that happen when planet is completed
+        }
+    }
 }
