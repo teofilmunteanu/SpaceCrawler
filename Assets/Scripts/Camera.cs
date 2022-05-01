@@ -15,7 +15,7 @@ public class Camera : MonoBehaviour
     {
         if (Input.GetKeyDown("u"))
         {
-            transform.localPosition = new Vector3(0, 4, -20);
+            transform.localPosition = new Vector3(0, 4, -5);
             transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
 

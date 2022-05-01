@@ -16,7 +16,8 @@ public class CameraPivot : MonoBehaviour
         if (Input.GetKeyDown("u"))
         {
             Debug.Log("ceva");
-            transform.localPosition = new Vector3(0, 0, 0);
+            transform.localPosition = this.transform.parent.localPosition;
+            Debug.Log(this.transform.parent.localPosition);   
             transform.localRotation = Quaternion.Euler(new Vector3(15.215f, 59.758f, -1.002f));
         }
 
