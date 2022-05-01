@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class MapUI : MonoBehaviour
 {
-    [SerializeField] private GameObject mapUI;
+    Animator m_Animator;
 
-    // Update is called once per frame
+    void Start()
+    {
+        m_Animator = gameObject.GetComponent<Animator>();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
-            //mapUI.SetActive(!mapUI.activeSelf);
+            m_Animator.SetTrigger("Open");
         }
     }
 }

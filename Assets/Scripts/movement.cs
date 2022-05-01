@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class movement : MonoBehaviour
 {
@@ -15,8 +16,11 @@ public class movement : MonoBehaviour
     float speed = 5f;
     bool moved;
 
-    // Start is called before the first frame update
-    void Start()
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         currentDirection = up;
         case1 = 0;

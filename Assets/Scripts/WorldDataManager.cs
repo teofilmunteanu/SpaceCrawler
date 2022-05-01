@@ -26,7 +26,14 @@ public class PlanetMap
 
 public class Planet
 {
+    int id;
+    public int Id { get => id; set => id = value; }
+
+    int solarSystemIndex;
+    public int SolarSystemIndex { get => solarSystemIndex; set => solarSystemIndex = value; }
+
     public PlanetMap map;
+
     //items that can be found -> List<item> items;
     //specific tiles -> List<tiles> tiles;
 }
@@ -54,25 +61,26 @@ public class WorldDataManager : MonoBehaviour
 {
     /******************singleton***************/
     public static WorldDataManager WorldInstance { get; private set; }
-
-    public const int totalNrOfPlanets = 3;
-    public const int totalNrOfSystems = 2;
-
-    public PlanetMapsData mapsData = new PlanetMapsData();
-    public SolarSystem[] solarSystems = new SolarSystem[totalNrOfSystems];
-
     private void Awake()
     {
-        if (WorldInstance != null && WorldInstance != this)
+        if (WorldInstance != null)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         else
         {
             WorldInstance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
     /******************************************/
+    public const int totalNrOfPlanets = 4;
+    public const int totalNrOfSystems = 3;
+
+    public static PlanetMapsData mapsData = new PlanetMapsData();
+    public static SolarSystem[] solarSystems = new SolarSystem[totalNrOfSystems];
+    public static Planet[] planets = new Planet[totalNrOfPlanets];
+
 
     void settingData()
     {
@@ -83,11 +91,12 @@ public class WorldDataManager : MonoBehaviour
             new PlanetMap(id++, 123),
             new PlanetMap(id++, 334),
             new PlanetMap(id++, 574),
+            new PlanetMap(id++, 786),
         };
         mapsData.TESTING = 111;
 
         //planets
-        Planet[] planets = new Planet[totalNrOfPlanets];
+        //Planet[] planets = new Planet[totalNrOfPlanets];
         for (int i = 0; i < totalNrOfPlanets; i++)
         {
             planets[i] = new Planet();
@@ -97,6 +106,11 @@ public class WorldDataManager : MonoBehaviour
         //solar systems
         solarSystems[0] = new SolarSystem(0, new Planet[] { planets[0] }); ;
         solarSystems[1] = new SolarSystem(2, new Planet[] { planets[1], planets[2] });
+        solarSystems[2] = new SolarSystem(1, new Planet[] { planets[3] });
+
+        for(int i=0;i<totalNrOfSystems;i++)
+            for(int j=0;j<solarSystems[i].nrOfPlanets;j++)
+                solarSystems[i].planets[j].SolarSystemIndex = i;
     }
 
     void Start()
