@@ -9,34 +9,31 @@ public class CameraPivot : MonoBehaviour
     {
 
     }
-
+    public GameObject player;
+ 
+    
     // Update is called once per frame
     void Update()
     {
+        transform.localPosition = player.transform.localPosition;
+
         if (Input.GetKeyDown("u"))
-        {
-            Debug.Log("ceva");
-            transform.localPosition = this.transform.parent.localPosition;
-            Debug.Log(this.transform.parent.localPosition);   
+        {       
             transform.localRotation = Quaternion.Euler(new Vector3(15.215f, 59.758f, -1.002f));
         }
 
-
         if (Input.GetKeyDown("i"))
         {
-            transform.localPosition = new Vector3(0, 0, 0);
             transform.localRotation = Quaternion.Euler(new Vector3(15.215f, 134.229f, -1.002f));
         }
 
         if (Input.GetKeyDown("o"))
         {
-            transform.localPosition = new Vector3(0, 0, 0);
             transform.localRotation = Quaternion.Euler(new Vector3(15.215f, 216.2f, -1.002f));
         }
 
         if (Input.GetKeyDown("p"))
         {
-            transform.localPosition = new Vector3(0, 0, 0);
             transform.localRotation = Quaternion.Euler(new Vector3(15.215f, 311.469f, -1.002f));
         }
     }
