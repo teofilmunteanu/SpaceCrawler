@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Mapa : MonoBehaviour
 {
@@ -24,18 +25,35 @@ public class Mapa : MonoBehaviour
 
     void Start()
     {
-        for (var i = 0; i < lines; i++)
+        initializeBlocks();
+
+        if(SceneManager.GetActiveScene().name == "Scenariu2")
         {
-            for (var j = 0; j < columns; j++)
-            {
-                o[i,j] = Instantiate(block, new Vector3(i * baseScale, 0, j * baseScale), Quaternion.identity);
-                //store position on the grid
-                m[i,j].x = i * baseScale;
-                m[i,j].z = j * baseScale;     
-            }
+            setBlocksIncreasing();  
         }
 
+        if(SceneManager.GetActiveScene().name == "TileEffectsTesting")
+        {
+            setBlocksTileEffectsTesting();  
+        }
+    }
 
+    void initializeBlocks()
+    {
+        for (int i = 0; i < lines; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    o[i,j] = Instantiate(block, new Vector3(i * baseScale, 0, j * baseScale), Quaternion.identity);
+                    //store position on the grid
+                    m[i,j].x = i * baseScale;
+                    m[i,j].z = j * baseScale;     
+                }
+            }
+    }
+
+    void setBlocksIncreasing()
+    {
         //inaltimi initiale - pentru test
         for(int i = 0;i<lines;i++)
         {
@@ -46,12 +64,19 @@ public class Mapa : MonoBehaviour
                 o[i,j].transform.position = o[i,j].transform.position + new Vector3(0, m[i,j].height / 2, 0);
                 o[i,j].transform.localScale = new Vector3(baseScale, m[i,j].height, baseScale);
             }
-        }    
+        }  
     }
 
-    // Update is called once per frame
-    void Update()
+    void setBlocksTileEffectsTesting()
     {
-        
+        for(int i = 0;i<lines;i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                m[i,j].height = 3;
+                o[i,j].transform.position = o[i,j].transform.position + new Vector3(0, m[i,j].height / 2, 0);
+                o[i,j].transform.localScale = new Vector3(baseScale, m[i,j].height, baseScale);
+            }
+        }  
     }
 }
