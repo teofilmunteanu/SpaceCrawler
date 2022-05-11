@@ -5,15 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class movement : MonoBehaviour
 {
-
     Vector3 up = Vector3.zero;
     int case1 = 0;
 
     Vector3 currentDirection = Vector3.zero;
 
-    Vector3 nextPos, destination;
+    Vector3 nextPos;
+    public static Vector3 destination;
 
     float speed = 5f;
+    float moveDistance = Mapa.baseScale;
     bool moved;
 
     void OnEnable()
@@ -25,14 +26,15 @@ public class movement : MonoBehaviour
         currentDirection = up;
         case1 = 0;
         nextPos = Vector3.forward;
-        destination = transform.position;
+        destination = new Vector3(Mapa.tiles[0,0].x, Mapa.tiles[0,0].height, Mapa.tiles[0,0].z);//to be removed when a movement check is added(so it can be moved by effects)
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
+        Move();             
     }
+
     void Move()
     {
         transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
@@ -72,20 +74,17 @@ public class movement : MonoBehaviour
                 moved = true;
 
             }
-        }
-        
+        }       
        
         if (Vector3.Distance(destination, transform.position) <= 0.00001f)
         {
             if (moved)
             {
                 transform.localEulerAngles = currentDirection;
-                 destination = transform.position + nextPos;
+                destination = transform.position + nextPos;
                 moved = false;
             }
-
         }
-
     }
 
     Vector3 forward()
@@ -94,19 +93,17 @@ public class movement : MonoBehaviour
         switch (case1)
         {
             case 0:
-                pos = new Vector3(0, 0, 1);
+                pos = new Vector3(0, 0, moveDistance);
                 break;
             case 1:
-                pos = new Vector3(1, 0, 0);
+                pos = new Vector3(moveDistance, 0, 0);
                 break;
             case 2:
-                pos = new Vector3(0, 0, -1);
+                pos = new Vector3(0, 0, -moveDistance);
                 break;
             case 3:
-                pos = new Vector3(-1, 0, 0);
+                pos = new Vector3(-moveDistance, 0, 0);
                 break;
-            
-
         }
         return pos;
     }

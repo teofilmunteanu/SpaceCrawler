@@ -213,7 +213,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76613dd94873a594ba0afdaeb62019ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  block: {fileID: 5198441789424553225, guid: 446d7413dcd51c74a9be9d0770ec3f2c, type: 3}
+  tileTypes:
+  - {fileID: 5198441789424553225, guid: 446d7413dcd51c74a9be9d0770ec3f2c, type: 3}
+  - {fileID: 5198441789424553225, guid: 446d7413dcd51c74a9be9d0770ec3f2c, type: 3}
+  - {fileID: 5198441789424553225, guid: 446d7413dcd51c74a9be9d0770ec3f2c, type: 3}
+  - {fileID: 5198441789424553225, guid: 446d7413dcd51c74a9be9d0770ec3f2c, type: 3}
+  coordinateTile: {fileID: 0}
 --- !u!4 &318260536
 Transform:
   m_ObjectHideFlags: 0
