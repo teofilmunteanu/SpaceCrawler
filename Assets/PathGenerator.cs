@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,12 +25,61 @@ public class PathGenerator : MonoBehaviour
     Block[,] m = new Block[300, 300];
     GameObject[,] o = new GameObject[300, 300];
 
+
     float baseScale = 2;
-    int lines = 250, columns = 250;
+    int lines = 100, columns = 100;
     int distance;
 
+    public const int MaxValue = 2147483647;
+  List<coord> fill = new List<coord>();
 
     int[,] state = new int[300 , 300];
+    int[,] proxi = new int[300 , 300];
+
+    void detProximity()
+    {
+        for (int i = 0; i < fill.Count; i++)
+        {
+            coord xy=fill[i];
+            Debug.Log("iteratie");
+            if( xy.x+1<lines && proxi[xy.x+1,xy.y]>proxi[xy.x,xy.y]+1 )
+            {
+                proxi[xy.x+1,xy.y]=proxi[xy.x,xy.y]+1;
+                Debug.Log(proxi[xy.x+1,xy.y]);
+                coord temp=xy;
+                temp.x++;
+                fill.Add(temp);
+            }
+            if(xy.y+1<columns && proxi[xy.x,xy.y+1]>proxi[xy.x,xy.y]+1 )
+            {
+                proxi[xy.x,xy.y+1]=proxi[xy.x,xy.y]+1;
+                Debug.Log(proxi[xy.x,xy.y+1]);
+                coord temp=xy;
+                temp.y++;
+                fill.Add(temp);            
+            }
+            if( xy.x-1>=0 && proxi[xy.x-1,xy.y]>proxi[xy.x,xy.y]+1)
+            {
+                proxi[xy.x-1,xy.y]=proxi[xy.x,xy.y]+1;
+                Debug.Log(proxi[xy.x-1,xy.y]);
+                coord temp=xy;
+                temp.x--;
+                fill.Add(temp);           
+            }
+            if(xy.y-1>=0 && proxi[xy.x,xy.y-1]>proxi[xy.x,xy.y]+1 )
+            {
+                proxi[xy.x,xy.y-1]=proxi[xy.x,xy.y]+1;
+                Debug.Log(proxi[xy.x,xy.y-1]);
+                coord temp=xy;
+                temp.y--;
+                fill.Add(temp);            
+            }
+        }
+        //Debug.Log();
+    }
+
+
+
 
 
     void addCell(int dir ,ref coord curent,ref coord finish)
@@ -61,7 +111,8 @@ public class PathGenerator : MonoBehaviour
         if(curent.x>columns)
         curent.y=columns;
         state[curent.x,curent.y]=1;
-        Debug.Log("cell placed");
+        proxi[curent.x,curent.y]=0;
+        fill.Add(curent);
     }
 
     int roulettewheel(int lastDir,coord curent,coord finish)
@@ -245,8 +296,6 @@ public class PathGenerator : MonoBehaviour
     }
 
 
-
-
     void PathG(coord curent,coord finish,bool path)
     {
         int distanceLeft=distance;
@@ -257,20 +306,19 @@ public class PathGenerator : MonoBehaviour
         {
 
             dir=roulettewheel(lastDir, curent, finish);
-            //Debug.Log(curent.x + "|"+curent.y+'|'+finish.x + ' '+finish.y+' ');
             addCell(dir,ref curent,ref finish);
-            //Debug.Log(curent.x + "|"+curent.y+'|'+finish.x + ' '+finish.y+' ');
+
             lastDir=dir;
             distanceLeft--;
             if(distanceLeft==0 && path)
             {
                 distanceLeft=distance;
-                Debug.Log("path nou");
+
                 initPoints(curent.x,curent.y,Random.Range(0,lines),Random.Range(0,columns),false);
                 
             }
         }
-        Debug.Log("path complet");
+
 
 
 
@@ -284,7 +332,8 @@ public class PathGenerator : MonoBehaviour
         curent.x=sx;
         curent.y=sy;
         state[curent.x,curent.y]=1;
-
+        proxi[curent.x,curent.y]=0;
+        fill.Add(curent);
         finish.x=fx;
         finish.y=fy;
 
@@ -294,6 +343,8 @@ public class PathGenerator : MonoBehaviour
             {
                 if(finish.x+i<lines && finish.y+j<columns && finish.x+i>0 && finish.y+j>0)
                 state[finish.x+i,finish.y+j]=1;
+                proxi[curent.x,curent.y]=0;
+                fill.Add(curent);
             }
         }
         PathG( curent,finish,path);
@@ -306,6 +357,7 @@ public class PathGenerator : MonoBehaviour
             for (var j = 0; j < columns; j++)
             {
                 state[i,j]=0;
+                proxi[i,j]=MaxValue;
             }
         }
 
@@ -320,8 +372,9 @@ public class PathGenerator : MonoBehaviour
             }
         }
         distance=(int)(Vector3.Distance(m[4,4].position(), m[lines-10,columns-10].position())/4);
-        Debug.Log(distance);
         initPoints(4,4,lines-10,columns-10, true);
+
+        detProximity();
 
         //inaltimi initiale - pentru test
         for(int i = 0;i<lines;i++)
@@ -330,12 +383,13 @@ public class PathGenerator : MonoBehaviour
             {
                 //store height
                 if(state[i,j]==1)
-                 {m[i,j].height = 60;
-                 //else
+                m[i,j].height = 0;
+                 else
+                    m[i,j].height = proxi[i,j];
                     //m[i,j].height = 3 + Random.Range(Vector3.Distance(m[0,0].position(), m[i,j/2].position())/5 - 2f, Vector3.Distance(m[0,0].position(), m[i,j/2].position())/5 + 2f);
                 o[i,j].transform.position = o[i,j].transform.position + new Vector3(0, m[i,j].height / 2, 0);
                 o[i,j].transform.localScale = new Vector3(baseScale, m[i,j].height, baseScale);
-                 }
+                
                 
                 
             }
