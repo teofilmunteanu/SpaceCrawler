@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class EffectManager : MonoBehaviour
 {
-    public GameObject map;
-
     void Start()
     {
         
