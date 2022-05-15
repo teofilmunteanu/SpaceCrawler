@@ -87,7 +87,6 @@ public class movement : MonoBehaviour
                 destination = transform.position + nextPos;
                 moved = false;
             }
-            Debug.Log(turn);
         }
     }
 
