@@ -16,7 +16,7 @@ public class movement : MonoBehaviour
 
     float speed = 5f;
     float moveDistance = Mapa.baseScale;
-    bool moved;
+    public static bool moved;
 
     void OnEnable()
     {
@@ -45,8 +45,6 @@ public class movement : MonoBehaviour
             {
                 nextPos = forward();
                 moved = true;
-                turn++;
-
             }
             if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             {
@@ -55,7 +53,6 @@ public class movement : MonoBehaviour
                 case1 %= 4;
                 nextPos = forward();
                 moved = true;
-                turn++;
 
             }
             if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
@@ -65,7 +62,6 @@ public class movement : MonoBehaviour
                 case1 %= 4;
                 nextPos = forward();
                 moved = true;
-                turn++;
             }
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
@@ -75,7 +71,6 @@ public class movement : MonoBehaviour
                 case1 %= 4;
                 nextPos = forward();
                 moved = true;
-                turn++;
             }
         }
 
@@ -86,8 +81,8 @@ public class movement : MonoBehaviour
                 transform.localEulerAngles = currentDirection;
                 destination = transform.position + nextPos;
                 moved = false;
+                turn++;
             }
-            Debug.Log(turn);
         }
     }
 
