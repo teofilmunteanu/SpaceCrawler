@@ -26,11 +26,10 @@ public class Mapa : MonoBehaviour
     public static float baseScale = 2;
     int lines = 50, columns = 50;
 
-    public int test = 123;
     void Awake()
     {
         initializeBlocks();
-
+        
         // if(SceneManager.GetActiveScene().name == "Scenariu2")
         // {
         //     setBlocksIncreasing();  
@@ -67,7 +66,7 @@ public class Mapa : MonoBehaviour
         //effect test - replaced by list of effects?
        tiles[0,1].effectIndex = 2;
        tiles[0,2].effectIndex = 1;
-       tiles[1,0].effectIndex = 3;
+       //tiles[1,0].effectIndex = 3;
 
         for (int i = 0; i < lines; i++)
         {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -207,13 +207,21 @@ PrefabInstance:
       value: Map
       objectReference: {fileID: 0}
     - target: {fileID: 2407276566793586660, guid: 0776a4f695086b74a8ae04fe48d1b040, type: 3}
-      propertyPath: tileTypes.Array.data[2]
+      propertyPath: tileTypes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407276566793586660, guid: 0776a4f695086b74a8ae04fe48d1b040, type: 3}
+      propertyPath: tileTypes.Array.data[0]
       value: 
       objectReference: {fileID: 9036394553702030738, guid: a8f91f3edf60b7047afe9978e085982f, type: 3}
     - target: {fileID: 2407276566793586660, guid: 0776a4f695086b74a8ae04fe48d1b040, type: 3}
+      propertyPath: tileTypes.Array.data[2]
+      value: 
+      objectReference: {fileID: 5260750403203156718, guid: 96f4559e6a0a6094382f3e84e75fe896, type: 3}
+    - target: {fileID: 2407276566793586660, guid: 0776a4f695086b74a8ae04fe48d1b040, type: 3}
       propertyPath: tileTypes.Array.data[3]
       value: 
-      objectReference: {fileID: 5764876954161521714, guid: d1115c019aad3ce4f9a09f01872c584f, type: 3}
+      objectReference: {fileID: 5198441789424553225, guid: 5add36617f0af9c4481005f6e6d9a9db, type: 3}
     - target: {fileID: 2407276566793586661, guid: 0776a4f695086b74a8ae04fe48d1b040, type: 3}
       propertyPath: m_RootOrder
       value: 7
