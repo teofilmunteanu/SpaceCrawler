@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Mapa : MonoBehaviour
 {
+    
     public struct Tile
     {
         public float x, z;
@@ -25,6 +26,7 @@ public class Mapa : MonoBehaviour
     public static float baseScale = 2;
     int lines = 50, columns = 50;
 
+    public int test = 123;
     void Awake()
     {
         initializeBlocks();
