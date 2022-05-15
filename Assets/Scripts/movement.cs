@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class movement : MonoBehaviour
 {
     Vector3 up = Vector3.zero;
-    int case1 = 0;
+    public static int case1 = 0;
+    public static int turn = 0;
 
     Vector3 currentDirection = Vector3.zero;
 
@@ -26,13 +27,13 @@ public class movement : MonoBehaviour
         currentDirection = up;
         case1 = 0;
         nextPos = Vector3.forward;
-        destination = new Vector3(Mapa.tiles[0,0].x, Mapa.tiles[0,0].height, Mapa.tiles[0,0].z);//to be removed when a movement check is added(so it can be moved by effects)
+        destination = new Vector3(Mapa.tiles[0, 0].x, Mapa.tiles[0, 0].height, Mapa.tiles[0, 0].z);//to be removed when a movement check is added(so it can be moved by effects)
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();             
+        Move();
     }
 
     void Move()
@@ -44,6 +45,7 @@ public class movement : MonoBehaviour
             {
                 nextPos = forward();
                 moved = true;
+                turn++;
 
             }
             if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
@@ -53,6 +55,7 @@ public class movement : MonoBehaviour
                 case1 %= 4;
                 nextPos = forward();
                 moved = true;
+                turn++;
 
             }
             if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
@@ -62,7 +65,7 @@ public class movement : MonoBehaviour
                 case1 %= 4;
                 nextPos = forward();
                 moved = true;
-
+                turn++;
             }
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
@@ -72,10 +75,10 @@ public class movement : MonoBehaviour
                 case1 %= 4;
                 nextPos = forward();
                 moved = true;
-
+                turn++;
             }
-        }       
-       
+        }
+
         if (Vector3.Distance(destination, transform.position) <= 0.00001f)
         {
             if (moved)
@@ -84,6 +87,7 @@ public class movement : MonoBehaviour
                 destination = transform.position + nextPos;
                 moved = false;
             }
+            Debug.Log(turn);
         }
     }
 
