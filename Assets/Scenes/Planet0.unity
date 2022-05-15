@@ -527,6 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc95690f1ad0dc64190d3176e2f0c3ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  map: {fileID: 0}
 --- !u!1 &1946679288
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,6 +605,10 @@ PrefabInstance:
     - target: {fileID: 2407276566793586659, guid: 0776a4f695086b74a8ae04fe48d1b040, type: 3}
       propertyPath: m_Name
       value: Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407276566793586660, guid: 0776a4f695086b74a8ae04fe48d1b040, type: 3}
+      propertyPath: tileTypes.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2407276566793586661, guid: 0776a4f695086b74a8ae04fe48d1b040, type: 3}
       propertyPath: m_RootOrder
